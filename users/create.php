@@ -15,7 +15,8 @@ if (isset($_POST['submit'])) {
     if ($password != $confirm_password) {
         $passwordError =  "Password not match";
     } else {
-       $insertQuery = "INSERT INTO `users` (`email`, `name`, `mobile`, `password`, `gender`, `address`, `hobbies`) VALUES ('$email', '$name', '$mobile', '$password', '$gender', '$address', '$hobbies')";
+       $insertQuery = "INSERT INTO `users` (`email`, `name`, `mobile`, `password`, `gender`, `address`, `hobbies`)                   
+                                    VALUES ('$email', '$name', '$mobile', '$password', '$gender', '$address', '$hobbies')";
 
         if ($db->query($insertQuery)) {
             // echo "1 Record inserted!";
@@ -37,7 +38,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="role" value="student">
         <table border="0">
             <tr>
