@@ -32,6 +32,7 @@ if (isset($_REQUEST['update'])) {
 
     if ($db->query($updateUserQuery)) {
         echo "updated!";
+        header('location:index.php');
     } else {
         echo 'something wrong';
     }

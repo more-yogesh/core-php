@@ -3,20 +3,31 @@ include('../connection.php');
 
 $passwordError = '';
 if (isset($_POST['submit'])) {
+
+    // print_r($_FILES['user_image']['name']);
+    // exit;
+
+
+    $tempName = $_FILES['user_image']['tmp_name'];
+    $fileName = $_FILES['user_image']['name'];
+    $destination = '../assets/uploaded_files/' . $fileName;
+    move_uploaded_file($tempName, $destination);
+
     $name = $_POST['name'];
     $mobile = $_POST['mobile'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $gender = $_POST['gender'];
-    $hobbies = implode("-",$_POST['hobbies']);
+    $hobbies = implode("-", $_POST['hobbies']);
     $address = $_POST['address'];
     $confirm_password = $_POST['confirm_password'];
+    $userImage = $fileName;
 
     if ($password != $confirm_password) {
         $passwordError =  "Password not match";
     } else {
-       $insertQuery = "INSERT INTO `users` (`email`, `name`, `mobile`, `password`, `gender`, `address`, `hobbies`)                   
-                                    VALUES ('$email', '$name', '$mobile', '$password', '$gender', '$address', '$hobbies')";
+        $insertQuery = "INSERT INTO `users` (`email`, `name`, `mobile`, `password`, `gender`, `address`, `hobbies`, `user_image`)                   
+                                    VALUES ('$email', '$name', '$mobile', '$password', '$gender', '$address', '$hobbies', '$userImage')";
 
         if ($db->query($insertQuery)) {
             // echo "1 Record inserted!";
@@ -43,11 +54,11 @@ if (isset($_POST['submit'])) {
         <table border="0">
             <tr>
                 <td><label for="name">Name</label></td>
-                <td><input type="text" name="name" id="name" placeholder="Enter Your Name" value="yogesh"></td>
+                <td><input type="text" name="name" id="name" placeholder="Enter Your Name"></td>
             </tr>
             <tr>
                 <td><label for="mobile">mobile</label></td>
-                <td><input type="number" name="mobile" id="mobile" value="123456"></td>
+                <td><input type="number" name="mobile" id="mobile"></td>
             </tr>
             <tr>
                 <td><label for="email">Email</label></td>
@@ -56,14 +67,14 @@ if (isset($_POST['submit'])) {
             <tr>
                 <td>Gender</td>
                 <td><input type="radio" id="male" name="gender" value="male" checked><label for="male">I am male</label></br>
-                    <input type="radio" name="gender" value="female" checked >I am female</br>
+                    <input type="radio" name="gender" value="female" checked>I am female</br>
                 </td>
             </tr>
             <tr>
                 <td>Hobbies</td>
-                <td><input type="checkbox" name="hobbies[]" value="travel">Travel<br/>
-                <input type="checkbox" name="hobbies[]" value="reading">Reading<br/>
-                <input type="checkbox" name="hobbies[]" value="eating">Eating<br/></td>
+                <td><input type="checkbox" name="hobbies[]" value="travel">Travel<br />
+                    <input type="checkbox" name="hobbies[]" value="reading">Reading<br />
+                    <input type="checkbox" name="hobbies[]" value="eating">Eating<br /></td>
             </tr>
             <tr>
                 <td>Address</td>
@@ -80,6 +91,10 @@ if (isset($_POST['submit'])) {
                         <option value="aud">AUD</option>
                     </select>
                 </td>
+            </tr>
+            <tr>
+                <td>User Image</td>
+                <td><input type="file" name="user_image" id=""></td>
             </tr>
             <tr>
                 <td><label for="password">password</label></td>

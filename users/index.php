@@ -8,10 +8,8 @@ if (isset($_POST['selected_ids'])) {
         $deleteQuery = "DELETE FROM users WHERE id = $id ";
         $db->query($deleteQuery);
     }
+    header('location:index.php');
 }
-
-
-
 // print_r($records); object details
 
 // $ar = [
@@ -55,6 +53,7 @@ if (isset($_POST['selected_ids'])) {
                 <td>Gender</td>
                 <td>Hobbies</td>
                 <td>Address</td>
+                <td>Image</td>
                 <td>Action</td>
             </tr>
             <?php
@@ -70,6 +69,7 @@ if (isset($_POST['selected_ids'])) {
                     <td><?php echo $row->gender; ?></td>
                     <td><?php echo $row->hobbies; ?></td>
                     <td><?php echo $row->address; ?></td>
+                    <td><img src="../assets/uploaded_files/<?php echo $row->user_image; ?>" height="100"></td>
                     <td><a href="show.php?id=<?php echo $row->id; ?>">Show</a></td>
                     <td><a href="edit.php?edit_id=<?php echo $row->id; ?>">Edit</a></td>
                     <td>
