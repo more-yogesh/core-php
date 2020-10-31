@@ -1,9 +1,6 @@
 <?php
 include_once('../connection.php');
 
-// echo "<pre>";print_r($_SERVER);
-// echo "<pre>";print_r($_SERVER['HTTP_HOST']);
-
 if (isset($_REQUEST['btnRegister'])) {
     $name = $_REQUEST['name'];
     $email = $_REQUEST['email'];
@@ -17,7 +14,6 @@ if (isset($_REQUEST['btnRegister'])) {
         header('location:login.php?success=user register successfully!');
     }
     echo "Registration fail!!!";
-    // $yogeshMoreDeveloper
 }
 ?>
 <?php

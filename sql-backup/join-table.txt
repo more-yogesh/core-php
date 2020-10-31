@@ -1,0 +1,2 @@
+syntax:
+SELECT <coloumn> FROM <base_table> LEFT JOIN <dependent_table> ON base_table.refe_key = depedent_table.primary_key

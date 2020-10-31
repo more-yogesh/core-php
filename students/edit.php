@@ -3,7 +3,12 @@
 include '../connection.php';
 
 $id = $_REQUEST['edit_id'];
-$userRecord = "SELECT * FROM users WHERE id = $id";
+$userRecord = "SELECT * FROM students WHERE id = $id";
+
+
+$countryQuery = "SELECT * FROM `countries`";
+
+$countries = $db->query($countryQuery);
 
 $row = $db->query($userRecord);
 
@@ -113,22 +118,19 @@ if (isset($_REQUEST['update'])) {
                 <td>
                     <select name="country">
                         <option value="">SELECT COUNTRY</option>
-                        <option value="ind" <?php if ($user->country == 'ind') {
-                                                echo "selected";
-                                            }
-                                            ?>>INDIA</option>
-                        <option value="usa" <?php if ($user->country == 'usa') {
-                                                echo "selected";
-                                            }
-                                            ?>>U.S.A.</option>
-                        <option value="uk" <?php if ($user->country == 'uk') {
-                                                echo "selected";
-                                            }
-                                            ?>>UK</option>
-                        <option value="aud" <?php if ($user->country == 'aud') {
-                                                echo "selected";
-                                            }
-                                            ?>>AUD</option>
+                        <?php
+                        $isSelected = '';
+                        while ($country = $countries->fetch_object()) {
+                            if($country->id == $user->country_id){
+                                $isSelected = 'selected';
+                            }
+                        ?>
+                            <option value="<?php echo $country->id; ?>" <?php echo $isSelected;?>>
+                                <?php echo $country->name; ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
                     </select>
                 </td>
             </tr>

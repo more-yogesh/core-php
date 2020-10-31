@@ -1,11 +1,12 @@
 <?php
 include('../connection.php');
 
+$countryQuery = "SELECT * FROM `countries`";
+
+$countries = $db->query($countryQuery);
+
 $passwordError = '';
 if (isset($_POST['submit'])) {
-
-    // print_r($_FILES['user_image']['name']);
-    // exit;
 
 
     $tempName = $_FILES['user_image']['tmp_name'];
@@ -20,14 +21,13 @@ if (isset($_POST['submit'])) {
     $gender = $_POST['gender'];
     $hobbies = implode("-", $_POST['hobbies']);
     $address = $_POST['address'];
+    $country = $_POST['country_id'];
     $confirm_password = $_POST['confirm_password'];
-    $userImage = $fileName;
 
     if ($password != $confirm_password) {
         $passwordError =  "Password not match";
     } else {
-        $insertQuery = "INSERT INTO `users` (`email`, `name`, `mobile`, `password`, `gender`, `address`, `hobbies`, `user_image`)                   
-                                    VALUES ('$email', '$name', '$mobile', '$password', '$gender', '$address', '$hobbies', '$userImage')";
+        $insertQuery = "INSERT INTO `students` (`email`, `name`, `mobile`, `password`, `gender`, `address`, `hobbies`, `user_image`, `country_id`) VALUES ('$email', '$name', '$mobile', '$password', '$gender', '$address', '$hobbies', '$fileName', '$country')";
 
         if ($db->query($insertQuery)) {
             // echo "1 Record inserted!";
@@ -83,18 +83,21 @@ if (isset($_POST['submit'])) {
             <tr>
                 <td>Country</td>
                 <td>
-                    <select name="country" multiple>
+                    <select name="country_id">
                         <option value="">SELECT COUNTRY</option>
-                        <option value="ind" selected>INDIA</option>
-                        <option value="usa">U.S.A.</option>
-                        <option value="uk">UK</option>
-                        <option value="aud">AUD</option>
+                        <?php
+                        while ($country = $countries->fetch_object()) {
+                        ?>
+                            <option value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
+                        <?php
+                        }
+                        ?>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>User Image</td>
-                <td><input type="file" name="user_image" id=""></td>
+                <td><input type="file" name="user_image" id="" accept="image/*"></td>
             </tr>
             <tr>
                 <td><label for="password">password</label></td>

@@ -5,7 +5,7 @@ include('../connection.php');
 if (!$_SESSION['isLogin']) {
     header('location:../authenticate/login.php');
 }
-$records = $db->query('SELaECT * FROM `students`');
+$records = $db->query('SELECT students.*, countries.name as country_name FROM students LEFT JOIN countries ON students.country_id = countries.id');
 
 if (isset($_POST['selected_ids'])) {
     $deleteIds = $_POST['selected_ids'];
@@ -50,6 +50,7 @@ if (isset($_GET['status'])) {
             <td>Gender</td>
             <td>Hobbies</td>
             <td>Address</td>
+            <td>Country Name</td>
             <td>Image</td>
             <td>Action</td>
         </tr>
@@ -66,6 +67,7 @@ if (isset($_GET['status'])) {
                 <td><?php echo $row->gender; ?></td>
                 <td><?php echo $row->hobbies; ?></td>
                 <td><?php echo $row->address; ?></td>
+                <td><?php echo $row->country_name; ?></td>
                 <td><img src="../assets/uploaded_files/<?php echo $row->user_image; ?>" height="100"></td>
                 <td><a href="show.php?id=<?php echo $row->id; ?>">Show</a></td>
                 <td><a href="edit.php?edit_id=<?php echo $row->id; ?>">Edit</a></td>
