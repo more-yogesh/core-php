@@ -1,0 +1,3 @@
+SELECT COUNT(*) as total_users FROM users
+
+SELECT MIN(salary_to) as minsalary FROM jobs 
