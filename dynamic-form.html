@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 my-5">
+                <form action="" method="post">
+                    <div class="form-group col-md-6">
+                        <label for="">Category Name</label>
+                        <div class="d-flex">
+                            <input type="text" name="name[]" id="" class="form-control">
+                            <button type="button" class="btn btn-primary ml-2" onclick="addRow()">+</button>
+                        </div>
+                    </div>
+                    <div id="myNewElements">
+
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="dada">
+        DADA
+        <div id="papa">
+            PAPA
+            <div id="child">
+                CHILD
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        count = 0;
+        function addRow() {
+            if (count >= 5) {
+                alert('You are reached to the limit of 5');
+                return false;
+            }
+            count++;
+            $('#myNewElements').append(`
+        <div class="col-md-6">
+        <div class="d-flex my-2">
+            <input type="text" name="name[]" id="" class="form-control" placeholder="Name ${count}">
+            <button type="button" class="btn btn-success ml-2" onclick="addRow()">+</button><button type="button"
+                onclick="removeRow(this)" class="btn btn-danger ml-2">&times;</button>
+        </div>
+    </div>`);
+        }
+        function removeRow(e) {
+            count--;
+            $(e).parent().remove();
+        }
+
+        $(document).ready(function () {
+            // 1. array
+            // 2. object
+            var myArray = [1, 2, 3];
+            // var myObject = {};
+            // var arrayObject = [
+            //     {},
+            //     {},
+            //     {}
+            // ]; 
+            var myCss = { 'background': 'red', 'border': '1px solid blue' };
+
+            console.log(myArray.length);
+            $('#child').parent().parent().css(myCss);
+        });
+
+    </script>
+</body>
+
+</html>

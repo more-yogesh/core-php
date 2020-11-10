@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="">
+    
+    <div id="first" onmouseover="changeColor()">
+RONAK
+    </div>
+<input type="text" name="" id="inputId" onkeyup="writeText(this.value)">
+<div id="display" style="background-color: rgb(109, 10, 88);border: 10px solid black;"></div>
+
+
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+
+<script>
+$(document).ready(function () {
+});
+
+function writeText(inputValue) {
+            $('#display').html(inputValue);
+        }
+
+function changeColor(colorName)
+{
+    $('#first').css("background-Color",colorName);
+}
+</script>
+</body>
+</html>
