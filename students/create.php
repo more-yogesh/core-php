@@ -117,7 +117,6 @@ if (isset($_POST['submit'])) {
                 <td colspan="2"><input type="submit" name="submit" value="ADD" /></td>
             </tr>
         </table>
-
     </form>
 </body>
 
