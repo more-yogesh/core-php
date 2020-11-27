@@ -25,6 +25,14 @@ Route::get('post/this-is-my-test/{id?}', function ($id = '') {
 
 Route::get('home/{name?}', 'WelcomeController@index');
 
+Route::get('product/create', 'ProductController@create');
+Route::post('product/insert', 'ProductController@insert');
+Route::get('product/index', 'ProductController@index');
+Route::get('product/destroy/{id}', 'ProductController@destroy');
+Route::get('product/edit/{id}', 'ProductController@edit');
+Route::post('product/update/{id}', 'ProductController@update');
+Route::post('product/show/{id}', 'ProductController@show');
+
 
 
 
