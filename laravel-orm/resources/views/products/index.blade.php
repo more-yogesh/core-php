@@ -10,18 +10,28 @@
 
 <body>
     <h1>Products Index</h1>
-    @foreach ($products as $product)
-        <div>{{--
+    {{-- @foreach ($products as $product)
+        --}}
+        {{-- <div> --}}
+            {{--
             <!-- yogesh nore --> --}}
-            <b>{{-- $loop->index+1 --}}
-                {{ $loop->iteration }}. Product Name: {{ $product->name }}</b> - Rs.<i>
+            {{-- $loop->index+1 --}}
+            {{-- {{ $loop->iteration }}. Product Name: {{ $product->name }}</b> - Rs.<i>
                 {{ number_format($product->price, 2) }}</i>
             <a href="{{ url("products/$product->id/edit") }}">EDIT</a>
             <a href="{{ url('products', $product->id) }}">BATAO</a>
             <a href="{{ url('products/destroy', $product->id) }}">DELETE</a>
-            <hr />
-        </div>
-    @endforeach
+            <hr /> --}}
+            {{--
+        </div> --}}
+        {{-- @endforeach --}}
+
+    @forelse($products as $product)
+        {{ $product->name }}
+    @empty
+        <h1>No Records Found</h1>
+    @endforelse
+
 </body>
 
 </html>
