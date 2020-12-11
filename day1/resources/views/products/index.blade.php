@@ -23,8 +23,9 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $myProduct->name }}</td>
                 <td>{{ $myProduct->price }}</td>
-                <td><a href="{{ url('product/destroy/'.$myProduct->id) }}">DELETE</a>
-                    <a href="{{ url('product/edit/'.$myProduct->id) }}">Edit</a></td>
+                <td><a href="{{ route('product.destroy', $myProduct->id) }}">DELETE</a>
+                    <a href="{{ route('product.edit', $myProduct->id) }}">Edit</a>
+                </td>
             </tr>
         @endforeach
     </table>

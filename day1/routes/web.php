@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('about-us/{id}', function(){
+    return '<h1>THIS IS ABOUT PAGE</h1>';
+})->name('about');
+
 Route::get('/test', function () {
     return 'testing data';
 });
@@ -25,13 +29,13 @@ Route::get('post/this-is-my-test/{id?}', function ($id = '') {
 
 Route::get('home/{name?}', 'WelcomeController@index');
 
-Route::get('product/create', 'ProductController@create');
-Route::post('product/insert', 'ProductController@insert');
-Route::get('product/index', 'ProductController@index');
-Route::get('product/destroy/{id}', 'ProductController@destroy');
-Route::get('product/edit/{id}', 'ProductController@edit');
-Route::post('product/update/{id}', 'ProductController@update');
-Route::post('product/show/{id}', 'ProductController@show');
+Route::get('product/create', 'ProductController@create')->name('product.create');
+Route::post('product/insert', 'ProductController@insert')->name('product.store');;
+Route::get('product', 'ProductController@index')->name('product.index');
+Route::get('product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
+Route::get('product/edit/{id}', 'ProductController@edit')->name('product.edit');
+Route::post('product/update/{id}', 'ProductController@update')->name('product.update');
+Route::post('product/show/{id}', 'ProductController@show')->name('product.show');
 
 
 

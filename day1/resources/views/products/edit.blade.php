@@ -10,7 +10,7 @@
 
 <body>
     Edit Product
-    <form action="{{ url('product/update/' . $myProduct[0]->id) }}" method="POST">
+    <form action="{{ route('product.update', $myProduct[0]->id) }}" method="POST">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         {{ dump($myProduct) }}
         <label for="">Name</label>

@@ -10,7 +10,7 @@
 
 <body>
     <h1>Create New Product</h1>
-    <form action="{{ url('product/insert') }}" method="post">
+    <form action="{{ route('product.store') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <label for="">Name</label>
         <input type="text" name="name" id="name"><br />

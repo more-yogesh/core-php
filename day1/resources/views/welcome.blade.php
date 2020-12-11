@@ -8,5 +8,6 @@
 </head>
 <body>
     Hello world
+<a href="{{ route('product.create') }}">ABOUT US PAGE LINK</a>
 </body>
 </html>
