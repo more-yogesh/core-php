@@ -22,10 +22,24 @@ class CategoryController extends Controller
 
         // dd($request->except('_token'));
         // 1st type
-        // $category = new Category();
-        // $category->name = $request->name;
-        // $category->price = $request->price;
-        // $category->save();
+
+        if ($request->hasFile('image')) {
+            // dd($request->image->getClientOriginalName());
+            // $newFileName = time() . "_" . rand(10) . "." . $request->image->getClientOriginalExtension();
+            $fileName = $request->image->getClientOriginalName();
+            $request->image->move('product_images', $fileName);
+            // part 2
+            // $request->file('image')->store('');
+        }
+
+
+        // dd('file move done');
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->price = $request->price;
+        $category->image = $fileName;
+        $category->save();
 
         // 2nd type
 
@@ -36,7 +50,7 @@ class CategoryController extends Controller
 
         // 3rd type
 
-        Category::create($request->except('_token'));
+        // Category::create($request->except('_token'));
 
         return redirect()->route('categories.index')->with('success', 'category added!');
         // dd($request->all());

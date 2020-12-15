@@ -48,6 +48,14 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="">Category</label>
+                                <select name="tbl_category_id" id="" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button class="btn btn-secondary">ADD</button>
                         </form>
                     </div>

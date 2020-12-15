@@ -19,7 +19,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form method="post" action="{{ route('products.store') }}">
+                        <form method="post" action="{{ route('products.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group ">
                                 <label for="">Name</label>
@@ -34,6 +34,15 @@
                                 <input type="text" name="price" id="" value="{{ old('price') }}"
                                     class="form-control @error('price') is-invalid @enderror">
                                 @error('price')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Image</label>
+                                <input type="file" name="product" id=""
+                                    class="form-control @error('product') is-invalid @enderror">
+                                @error('product')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

@@ -10,6 +10,12 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'price'
+        'price',
+        'image'
     ];
+
+    public function students()
+    {
+        return $this->hasMany('App\Student');
+    }
 }

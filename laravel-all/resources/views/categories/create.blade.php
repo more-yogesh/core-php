@@ -8,7 +8,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Add Categories <a href="{{ route('categories.index') }}" class="btn btn-primary float-right">Back</a>
+                        <h2>Add Categories <a href="{{ route('categories.index') }}"
+                                class="btn btn-primary float-right">Back</a>
                         </h2>
                     </div>
                     <div class="card-body">
@@ -19,7 +20,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form method="post" action="{{ route('categories.store') }}">
+                        <form method="post" action="{{ route('categories.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group ">
                                 <label for="">Name</label>
@@ -34,6 +35,14 @@
                                 <input type="text" name="price" id="" value="{{ old('price') }}"
                                     class="form-control @error('price') is-invalid @enderror">
                                 @error('price')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="">image</label>
+                                <input type="file" name="image" id=""
+                                    class="form-control @error('image') is-invalid @enderror" accept="image/*">
+                                @error('image')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

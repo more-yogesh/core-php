@@ -17,6 +17,7 @@
                                 <tr class="bg-info text-white">
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Category</th>
                                     <th>Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -26,6 +27,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $student->name }}</td>
+                                        <td>{{ $student->category->name }}</td>
                                         <td>{{ $student->price }}</td>
                                         <td class="d-flex"><a href="{{ route('students.edit', $student->id) }}"
                                                 class="btn btn-success btn-sm mr-1" data-toggle="tooltip"

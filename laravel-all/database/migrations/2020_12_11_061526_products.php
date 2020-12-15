@@ -13,10 +13,11 @@ class Products extends Migration
      */
     public function up()
     {
-        Schema::create('products', function(Blueprint $table){
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->float('price')->nullable()->default('0');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

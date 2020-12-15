@@ -17,6 +17,7 @@ class Category extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('price');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

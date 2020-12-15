@@ -60,6 +60,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('categories.index') }}">{{ __('Categoies') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
+                            </li>
+                            
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -15,6 +15,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="bg-info text-white">
+                                    <th>Image</th>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Price</th>
@@ -24,6 +25,8 @@
                             <tbody>
                                 @foreach ($categories as $category)
                                     <tr>
+                                        <td><img src="{{ asset('product_images/' . $category->image) }}" alt=""
+                                                height="100"></td>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->price }}</td>

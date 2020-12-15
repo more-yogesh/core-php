@@ -6,6 +6,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\Student\UpdateStudentRequest;
 use App\Student;
 use Illuminate\Http\Request;
+use App\Category;
 
 class StudentController extends Controller
 {
@@ -16,7 +17,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students  = Student::all();
+        $students  = Student::with('category')->get();
+        // dd($students);
         return view('students.index', compact('students'));
     }
 
@@ -27,7 +29,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $categories = Category::all();
+        return view('students.create', compact('categories'));
     }
 
     /**
