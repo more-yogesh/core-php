@@ -17,6 +17,7 @@
                                 <tr class="bg-info text-white">
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Category</th>
                                     <th>Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -26,6 +27,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $product->name }}</td>
+                                        <td>{{ $product->category1->name }}({{ $product->category1->price }})</td>
                                         <td>{{ $product->price }}</td>
                                         <td class="d-flex"><a href="{{ route('products.edit', $product->id) }}"
                                                 class="btn btn-success btn-sm mr-1" data-toggle="tooltip"

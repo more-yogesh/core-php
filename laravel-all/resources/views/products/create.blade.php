@@ -37,7 +37,21 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="">category</label>
+                                <select name="category" id="category" class="form-control" onchange="getMySub(this.value)">
+                                    <option value="">SELECT CATEGORY</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">SUB category</label>
+                                <select name="sub_category" id="sub_category" class="form-control">
 
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="">Image</label>
                                 <input type="file" name="product" id=""
@@ -53,4 +67,27 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+    <script>
+        getMySub(0);
+        function getMySub(id) {
+            $.ajax({
+                url: '{{ url('get-sub-categories') }}/' + id,
+                method: 'GET',
+                success: function(data) {
+                    // console.log(data.length);
+                    len = data.length;
+                    // console.log(data[0].name);
+                    var subCates = '<option value="">SELECT SUB CAT</option>';
+                    for (i = 0; i < len; i++) {
+                        subCates += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                    }
+                    $('#sub_category').html(subCates);
+                }
+            });
+        }
+    </script>
 @endsection

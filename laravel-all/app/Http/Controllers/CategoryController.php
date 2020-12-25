@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Category;
+use App\SubCategory;
 
 class CategoryController extends Controller
 {
@@ -75,5 +76,10 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'category deleted!');
+    }
+
+    public function getSubCategories($id)
+    {
+        return SubCategory::where('category_id', $id)->get();
     }
 }

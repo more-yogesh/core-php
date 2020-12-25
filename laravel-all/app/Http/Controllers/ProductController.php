@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-use function PHPSTORM_META\map;
+use App\Category;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -17,14 +17,16 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = DB::table('products')->get();
+        // $products = DB::table('products')->get();
+        $products = Product::with('category1')->get();
+        // dd($products);
         return view('products.index', ['products' => $products]);
     }
 
     public function create()
     {
-        // $this->middleware('auth');
-        return view('products.create');
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -37,11 +39,14 @@ class ProductController extends Controller
             'required' => 'Please enter :attribute.',
             'unique' => 'This :attribute is already exist.'
         ]);
-        DB::table('products')->insert([
-            'name' => $request->name,
-            'price' => $request->price
-        ]);
-
+        // dd($request->all());
+        $product = new Product();
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->image = 'default.png';
+        $product->category_id = $request->category;
+        $product->sub_category_id = $request->sub_category;
+        $product->save();
         return redirect()->route('products.index')->with('success', 'Product added successfully!');
 
         // dd($request->all());

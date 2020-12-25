@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('categories/{id}', 'CategoryController@show')->name('categories.show');
     Route::post('categories/{category}', 'CategoryController@destroy')->name('categories.destroy');
 
+    Route::get('get-sub-categories/{id}', 'CategoryController@getSubCategories');
+
     // resource
 
     Route::resource('students', 'StudentController');
